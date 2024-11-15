@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+     <link rel = "stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+</head>
+<body>
+<h1>Product list</h1>
+<table border="1" class="product">
+<tr>
+    <th></th>
+    <th>Ma san pham</th>
+    <th>Ten san pham</th>
+    <th>Mo ta</th>
+    <th>Gia ban</th>
+</tr>
+{% for p in products %}
+    <tr>
+        <td>
+            <img src="{{ url_for('static',filename=p.image) }}" width="100" alt="{{ p.name }}"  />
+        </td>
+        <td>{{ p.image }}</td>
+    <td>{{p.id}}</td>
+    <td>{{p.description}}</td>
+    <td>{{p.price}} VND</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

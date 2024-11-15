@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang chu</title>
+    <link rel = "stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+</head>
+<body>
+<h1>Hello ca nha cua kem</h1>
+<ul>
+    <li><a href="{{ url_for('product_list') }}">Tat ca san pham</a></li>
+    {% for i in categories %}
+    <li><a href="/products?category_id={{ i.id }}">{{ i.name }}</a></li>
+    {% endfor %}
+</ul>
+</body>
+</html>

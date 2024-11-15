@@ -1,0 +1,10 @@
+*{
+font-family:Tahoma;
+}
+body{
+background-color: lightblue;
+color: darkblue;
+}
+table.product{
+border-collapse: collapse;
+}
