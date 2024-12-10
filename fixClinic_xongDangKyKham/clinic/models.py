@@ -1,7 +1,7 @@
 from enum import Enum as UserEnum
 from sqlalchemy import DateTime, Enum, Column, Integer, String, Float, Boolean, ForeignKey, Date, func, Time
 from sqlalchemy.orm import relationship
-from clinic import app, db, dao
+from clinic import app, db, utils
 from datetime import datetime, date
 from flask_login import UserMixin
 from itsdangerous.url_safe import URLSafeSerializer as Serializer
@@ -97,7 +97,7 @@ if __name__ == '__main__':
         admin1 = User(
             name='admin1',
             username='admin1',
-            password=str(dao.hash_password("123")),  # Mật khẩu được băm
+            password=str(utils.hash_password("123")),  # Mật khẩu được băm
             avatar='https://res.cloudinary.com/dmz9kuzue/image/upload/v1732014605/samples/dessert-on-a-plate.jpg',
             email='2251010077phuong@ou.edu.vn',
             user_role=UserRole.ADMIN,
@@ -113,7 +113,7 @@ if __name__ == '__main__':
         patient1 = User(
             name='patient1',
             username='patient1',
-            password=str(dao.hash_password("123")),  # Mật khẩu được băm
+            password=str(utils.hash_password("123")),  # Mật khẩu được băm
             avatar='https://res.cloudinary.com/dmz9kuzue/image/upload/v1732014605/samples/dessert-on-a-plate.jpg',
             email='2251010062mai@ou.edu.vn',
             user_role=UserRole.PATIENT,
@@ -129,7 +129,7 @@ if __name__ == '__main__':
         patient2 = User(
             name='patient2',
             username='patient2',
-            password=str(dao.hash_password("123")), # Mật khẩu được băm
+            password=str(utils.hash_password("123")), # Mật khẩu được băm
             avatar='https://res.cloudinary.com/dmz9kuzue/image/upload/v1732014605/samples/dessert-on-a-plate.jpg',
             email='nglhongphuong@gmail.com',
             user_role=UserRole.PATIENT,
@@ -145,7 +145,7 @@ if __name__ == '__main__':
         nurse1 = User(
             name='nurse1',
             username='nurse2',
-            password=str(dao.hash_password("123")),  # Mật khẩu được băm
+            password=str(utils.hash_password("123")),  # Mật khẩu được băm
             avatar='https://res.cloudinary.com/dmz9kuzue/image/upload/v1732014605/samples/dessert-on-a-plate.jpg',
             email='nguyenluhongphuong@gmail.com',
             user_role=UserRole.NURSE,
