@@ -1,0 +1,50 @@
+# password
+-> xử lý bằng thư viện bcrypt
+-> Mỗi lần tạo mã băm sẽ khác nhau
+Ưu: An toàn
+Khuyết: Chưa rõ
+
+# quên mật khẩu
+-> thư viện from itsdangerous.url_safe import URLSafeSerializer as Serializer
+đường dẫn an toàn tại local host
+Ưu: mã hóa được token thông tin người dùng khi gửi mail
+Khuyết: Giống haslib kiểu với đối tượng đó mã hóa vẫn không thay đổi -> kém an toàn
+
+# Sử dụng thời gian thực để tự động thay đổi trạng thái khám
+-> chưa khắc phục
+......----------------------------------------------------------------------------------------
+các file .py
+- dao.py nơi xử lý liên quan đến database như truy vấn, thêm xóa sửa
+- forms.py nơi quy định các ràng buộc forms bằng thư viên wtform
+- index -> routes
+- utils -> các hàm tiện ích xử lý linh tinh
+- test -> test code nếu không chắc chắn
+
+về Templates: Giao diện
+> admin:
+  - index: giao diện trang chủ của admin được ghi đè
+
+> appointment: Nơi lưu trữ giao diện liên quan tới lịch khám
+  - register_appointment: bệnh nhân và y tá đều có thể tham gia
+  - search_appointment: chỉ có y tá mới tham gia tác động, tìm được id bệnh nhân mới chuyển trang đăng ký
+
+> auth: xử lý liên quan tới chứng thực người dùng
+  - change_password: Nhập password để gửi request lên hệ thống thay đổi password sau khi nhận mail yêu cầu reset pasword
+  - login: phần đăng nhập
+  - register: đăng ký
+  - reset_password: cho người dùng điền mail để phía bên server gửi mail đến client thông qua token được mã hóa đường dẫn
+
+> layout: Giao diện chung nhưng chủ yếu làm việc xử lý trên header
+  - header:
+  chỉ cần quan tâm tới
+1)  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                    <li><a class="dropdown-item" href="{{ url_for('profile') }}">Profile</a></li>
+                    {% if current_user.user_role.value == 'patient' %}
+                    <li><a class="dropdown-item" href="{{ url_for('appointment') }}">Lịch khám</a></li>
+                    {% endif %}
+                </ul>
+      => Bổ sung thêm nếu cần thiết liên quan tới thanh sổ xuống,
+2)  <!--đăng nhập với tư cách ??????? --> -> Note: ở đây thêm chức năng chính trên menu
+
+> patient: Nơi lưu trữ các thông tin có liên kết với bệnh nhân như lịch khám, hóa đơn, v..v
+> profile: Thông tin user -> có thể thay đổi , thêm xóa sửa -> chưa xử lý.
